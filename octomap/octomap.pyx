@@ -509,11 +509,11 @@ cdef class OcTree:
             is_occupied = self.isNodeOccupied(it)
             size = it.getSize()
             center = it.getCoordinate()
-            if b_min is not None and np.any(center < b_min):
+            if b_min is not None and np.any(center - 0.5 * size < b_min):
                 continue
-            if b_max is not None and np.any(center > b_max):
+            if b_max is not None and np.any(center + 0.5 * size > b_max):
                 continue
-            dimension = max(1, round(it.getSize() / resolution))
+            dimension = max(1, round(size / resolution))
             origin = center - (dimension / 2 - 0.5) * resolution
             indices = np.column_stack(np.nonzero(np.ones((dimension, dimension, dimension))))
             points = origin + indices * np.array(resolution)
