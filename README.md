@@ -4,21 +4,22 @@
 <div align="center">
   <a href="https://pypi.python.org/pypi/octomap-python"><img src="https://img.shields.io/pypi/v/octomap-python.svg"></a>
   <a href="https://pypi.org/project/octomap-python"><img src="https://img.shields.io/pypi/pyversions/octomap-python.svg"></a>
-  <a href="https://github.com/wkentaro/octomap-python/actions"><img src="https://github.com/wkentaro/octomap-python/workflows/ci/badge.svg"></a>
+  <a href="https://github.com/HiroIshida/octomap-python/actions"><img src="https://github.com/HiroIshida/octomap-python/workflows/ci/badge.svg"></a>
 </div>
 
 
 ## Installation
-
+Note: currently octomap source code is not included in the distributed package. So you need to install liboctomap-dev first.
 ```bash
-pip install octomap-python
+sudo apt install liboctomap-dev
+pip install octomap-python-messy
 ```
 
 
 ## Example
 
 ```bash
-git clone --recursive https://github.com/wkentaro/octomap-python.git && cd octomap-python
+git clone --recursive https://github.com/HiroIshida/octomap-python.git && cd octomap-python
 pip install -e '.[example]'
 
 cd examples
