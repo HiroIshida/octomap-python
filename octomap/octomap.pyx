@@ -491,8 +491,11 @@ cdef class OcTree:
     def extractPointCloud(self,
                           np.ndarray[DOUBLE_t, ndim=1] b_min = None,
                           np.ndarray[DOUBLE_t, ndim=1] b_max = None,
+                          resol_aug = 1
                           ):
         cdef float resolution = self.getResolution()
+        # augument the point cloud by factor of resol_aug
+        resolution = resolution * resol_aug
 
         cdef list occupied = []
         cdef list empty = []
