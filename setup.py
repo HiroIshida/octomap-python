@@ -79,16 +79,16 @@ def main():
     ]
 
     skbuild.setup(
-        name="octomap-python",
-        version="1.8.0.post12",
+        name="octomap-python-messy",
+        version="1.8.0.post12.dev0",
         install_requires=["numpy"],
         extras_require={
             "example": ["glooey", "imgviz>=1.2.0", "pyglet", "trimesh[easy]"],
         },
         license="BSD",
-        maintainer="Kentaro Wada",
-        maintainer_email="www.kentaro.wada@gmail.com",
-        url="https://github.com/wkentaro/octomap-python",
+        maintainer="Hirokazu Ishida",
+        maintainer_email="h-ishida@jsk.imi.i.u-tokyo.ac.jp",
+        url="https://github.com/HiroIshida/octomap-python",
         description="Python binding of the OctoMap library.",
         long_description=get_long_description(),
         long_description_content_type="text/markdown",
