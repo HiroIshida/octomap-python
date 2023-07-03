@@ -488,14 +488,17 @@ cdef class OcTree:
                 pass
         return labels
 
-    def extractPointCloud(self):
+    def extractPointCloud(self,
+                          np.ndarray[DOUBLE_t, ndim=1] b_min = None,
+                          np.ndarray[DOUBLE_t, ndim=1] b_max = None,
+                          ):
         cdef float resolution = self.getResolution()
 
         cdef list occupied = []
         cdef list empty = []
         cdef leaf_iterator it
         cdef float size
-        cdef int is_occupied
+        cdef int is_occupied,
         cdef np.ndarray[DOUBLE_t, ndim=1] center
         cdef np.ndarray[DOUBLE_t, ndim=1] origin
         cdef np.ndarray[np.int64_t, ndim=2] indices
@@ -506,7 +509,10 @@ cdef class OcTree:
             is_occupied = self.isNodeOccupied(it)
             size = it.getSize()
             center = it.getCoordinate()
-
+            if b_min is not None and np.any(center < b_min):
+                continue
+            if b_max is not None and np.any(center > b_max):
+                continue
             dimension = max(1, round(it.getSize() / resolution))
             origin = center - (dimension / 2 - 0.5) * resolution
             indices = np.column_stack(np.nonzero(np.ones((dimension, dimension, dimension))))
